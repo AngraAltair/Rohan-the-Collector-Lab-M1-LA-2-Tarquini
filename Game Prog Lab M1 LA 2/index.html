@@ -40,6 +40,7 @@ var cursors;
 var score = 0;
 var gameOver = false;
 var scoreText;
+var starsCollectedUI;
 var Color = [0xff0000, 0xffa500, 0xffff00, 0x00ff00, 0x0000ff, 0x4b0082, 0xee82ee];
 var tintIndex = 0;
 var starsCollected = 0;
@@ -120,7 +121,8 @@ function create ()
     bombs = this.physics.add.group();
 
     //  The scorefont
-    scoreText = this.add.text(16, 27, 'score: 0', { fontSize: '32px', fill: '#ff0000', fontFamily: 'Times New Roman' });
+    scoreText = this.add.text(16, 27, 'Score: 0', { fontSize: '32px', fill: '#ff0000', fontFamily: 'Times New Roman' });
+    starsCollectedUI = this.add.text(610, 0, 'Stars: 0', { fontSize: '32px', fill: '#ff0000', fontFamily: 'Times New Roman' });
 
     //  Collide the player and the stars with the platforms
     this.physics.add.collider(player, platforms);
@@ -173,6 +175,7 @@ function collectStar (player, star)
     score += 10;
     starsCollected += 1;
     scoreText.setText('Score: ' + score);
+    starsCollectedUI.setText('Stars: ' + starsCollected);
 
     // Change the player's tint color
     player.setTint(Color[tintIndex]);
